@@ -21,10 +21,13 @@ This endpoint requires you to POST with a user field.
 
 ### Params
 
+```javascript
 { "user: "Manoel Menezes" }
+```
 
 ### Response
 
+```javascript
 {
 	"colors":["R","B","G","Y","O","P","C","M"],
 	"code_length":8,
@@ -36,12 +39,13 @@ This endpoint requires you to POST with a user field.
 	"can_start":true,
 	"turn":1
 }
-
+```
 
 ### Example with curl
 
+```javascript
 curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST "http://localhost:9000/new_game" -d '{"user":"Manoel Menezes"}'
-
+```
 ### Every subsequent POST request will require you to supply the game_key field.
 
 ## POST /guess
@@ -50,13 +54,16 @@ This endpoint requires you to POST with the game_key and a code consisting of 8 
 
 ### Params
 
+```javascript
 { 
     "code": "RPYGOGOP", 
     "game_key": "9f0adb71-b0f0-440d-b93c-cb1395463761" 
 }
+```
 
 ### Response
 
+```javascript
 {
 	"code_length":8,
 	"colors":["R","B","G","Y","O","P","C","M"],
@@ -78,13 +85,17 @@ This endpoint requires you to POST with the game_key and a code consisting of 8 
 		"near":2
 	}
 }
+```
 
 ### Example with curl
 
+```javascript
 curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST "http://localhost:9000/guess" -d '{"code":"MMMMMMMM","game_key":"9f0adb71-b0f0-440d-b93c-cb1395463761"}'
+```
 
 ### Once you guess the correct code, you will receive the time it took for you to complete the challenge
 
+```javascript
 {
 	"code_length":8,
 	"colors":["R","B","G","Y","O","P","C","M"],
@@ -111,9 +122,11 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST "
 	"time_taken":107.0,
 	"time_over":false
 }
+```
 
 ### After 5 minutes you will receive the following JSON object:
 
+```javascript
 {
 	"code_length":8,
 	"colors":["R","B","G","Y","O","P","C","M"],
@@ -135,6 +148,7 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST "
 	"time_taken":325.0,
 	"time_over":true
 }
+```
 
 ## POST /new_multiplayer_game
 
@@ -142,10 +156,13 @@ This endpoint requires you to POST with a user field.
 
 ### Params
 
+```javascript
 { "user: "Manoel Menezes" }
+```
 
 ### Response (multiplayer is true and can_start is false because other player needs to join)
 
+```javascript
 {
 	"colors":["R","B","G","Y","O","P","C","M"],
 	"code_length":8,
@@ -157,11 +174,14 @@ This endpoint requires you to POST with a user field.
 	"can_start":false,
 	"turn":1
 }
+```
 
 
 ### Example with curl
 
+```javascript
 curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST "http://localhost:9000/new_multiplayer_game" -d '{"user":"Manoel Menezes"}'
+```
 
 ## POST /join
 
@@ -169,10 +189,13 @@ This endpoint requires you to POST with a user field and the game_key.
 
 ### Params
 
+```javascript
 { "user: "Manoel Menezes", "game_key": "b91dfc81-0f8c-4cb5-accb-beed03b8f64c" }
+```
 
 ### Response (multiplayer is true and can_start is true because other player has already joined)
 
+```javascript
 {
 	"colors":["R","B","G","Y","O","P","C","M"],
 	"code_length":8,
@@ -184,11 +207,13 @@ This endpoint requires you to POST with a user field and the game_key.
 	"can_start":true,
 	"turn":1
 }
-
+```
 
 ### Example with curl
 
+```javascript
 curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST "http://localhost:9000/join" -d '{"user":"Alynne", "game_key":"b91dfc81-0f8c-4cb5-ab-beed03b8f64c"}'
+```
 
 ## POST /guess_multiplayer
 
@@ -196,14 +221,17 @@ This endpoint requires you to POST with the game_key, a code consisting of 8 let
 
 ### Params
 
+```javascript
 { 
     "code": "RPYGOGOP", 
     "game_key": "9f0adb71-b0f0-440d-b93c-cb1395463761",
     "user": 1 
 }
+```
 
 ### Response (turn now is player 2)
 
+```javascript
 {
 	"code_length":8,
 	"colors":["R","B","G","Y","O","P","C","M"],
@@ -226,13 +254,17 @@ This endpoint requires you to POST with the game_key, a code consisting of 8 let
 		"near":3
 	}
 }
+```
 
 ### Example with curl
 
+```javascript
 curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST "http://localhost:9000/guess_multiplayer" -d '{"user":1, "game_key":"09127d4e-64c1-43a3-be4d-8eb69ec7f50d", "code":"MRGBYCCC"}'
+```
 
 ### Once you guess the correct code, you will receive the time it took for you to complete the challenge
 
+```javascript
 {
 	"code_length":8,
 	"colors":["R","B","G","Y","O","P","C","M"],
@@ -263,6 +295,7 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST "
 	"time_taken":61.0,
 	"time_over":false
 }
+```
 
 Back End
 ========
